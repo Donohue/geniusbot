@@ -40,8 +40,10 @@ def slashcommand():
         url = url_from_slack_message(message)
         if url:
             break
+
     params = {
-        'raw_annotatable_url': url
+        'raw_annotatable_url': url,
+        'access_token': os.environ['GENIUS_ACCESS_TOKEN']
     }
     try:
         response = requests.get(GENIUS_WEB_LOOKUP_URL, params=params)
