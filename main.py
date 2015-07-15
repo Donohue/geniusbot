@@ -62,8 +62,13 @@ def slashcommand():
     try:
         response = requests.get(GENIUS_REFERENTS_URL, params=params)
         referent_data = json.loads(response.content)
+        print referent_data
+        referents = referent_data['response']['referents']
     except Exception, e:
         return 'Genius API call failed; %s' % str(e)
+
+    if not referents:
+        return 'No annotations for %s' % url
 
     result = 'Annotations:\n\n'
     for referent in referent_data['response']['referents']:
