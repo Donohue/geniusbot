@@ -53,6 +53,9 @@ def slashcommand():
     except Exception, e:
         return 'Genius API call failed: %s' % str(e)
 
+    if not page_id:
+        return 'No annotations for %s' % url
+
     params = {
         'web_page_id': page_id,
         'text_format': 'plain',
@@ -75,6 +78,6 @@ def slashcommand():
         if not len(referent['fragment']):
             continue
 
-        result += '"%s" %s\n\n' % (referent['fragment'], referent['annotations'][0]['body']['html'])
+        result += '"%s" %s\n\n' % (referent['fragment'], referent['annotations'][0]['body']['plain'])
     return result
 
