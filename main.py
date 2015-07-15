@@ -46,6 +46,7 @@ def slashcommand():
     try:
         response = requests.get(GENIUS_WEB_LOOKUP_URL, params=params)
         page_data = json.loads(response.content)
+        print page_data
         page_id = page_data['response']['web_page']['id']
     except Exception, e:
         return 'Genius API call failed: %s' % str(e)
