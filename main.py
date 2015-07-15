@@ -78,6 +78,10 @@ def slashcommand():
         if not len(referent['fragment']):
             continue
 
-        result += '"%s" %s\n\n' % (referent['fragment'], referent['annotations'][0]['body']['plain'])
+        text = referent['fragment']
+        annotation = referent['annotations'][0]
+        note = annotation['body']['plain']
+        author = annotation['authors'][0]
+        result += '"%s"\n%s -%s\n\n' % (text, note, author['user']['name'])
     return result
 
