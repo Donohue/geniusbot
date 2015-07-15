@@ -82,6 +82,7 @@ def slashcommand():
         annotation = referent['annotations'][0]
         note = annotation['body']['plain']
         author = annotation['authors'][0]
-        result += '"%s"\n%s -%s\n\n' % (text, note, author['user']['name'])
+        genius_url = referent['url']
+        result += '"%s"\n%s -%s\n%s\n\n' % (text, note, author['user']['name'], genius_url)
     return result
 
